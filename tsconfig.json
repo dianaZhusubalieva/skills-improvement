@@ -9,6 +9,6 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true, /* Allow 'import x from y' when a module doesn't have a default export. */
-    "baseUrl": "." // for absolute import without ./
+//    "baseUrl": "." // for absolute import without ./
   }
 }
