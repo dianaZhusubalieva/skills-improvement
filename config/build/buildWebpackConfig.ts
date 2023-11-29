@@ -13,15 +13,16 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
         entry: paths.entry,
         output: {
             // как будет называться главный файл сборки приложения
-            filename: "[name].js",
+            filename: "[name].[contenthash].js",
             // путь куда должна происходить сборка (build/dist)
-            path: paths.build
+            path: paths.build,
+            clean: true
         },
+        plugins: buildPlugins(options),
         module: {
-            rules: buildLoaders(),
+            rules: buildLoaders(options),
         },
         resolve: buildResolvers(),
-        plugins: buildPlugins(options),
         // чтобы видеть в какой строчке ошибка
         // тк при билде образуется только один исходный файл
         devtool: isDev ? 'inline-source-map' : undefined,

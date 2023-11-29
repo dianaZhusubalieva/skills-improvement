@@ -1,6 +1,9 @@
 import webpack from "webpack";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import {BuildOptions} from "./types/config";
 
-export function buildLoaders(): webpack.RuleSetRule[] {
+export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
+    const {isDev} = options
 
     // ts-loader can transpile jsx also, if no tsx- we would've to download babel-loader
     const typescriptLoader = {
@@ -9,16 +12,25 @@ export function buildLoaders(): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     };
     const cssLoaders = {
-            test: /\.s[ac]ss$/i,
-            use: [
-                // Creates `style` nodes from JS strings
-                "style-loader",
-                // Translates CSS into CommonJS
-                "css-loader",
-                // Compiles Sass to CSS
-                "sass-loader",
-            ],
-        };
+        test: /\.s[ac]ss$/i,
+        use: [
+            // Creates `style` nodes from JS strings
+            isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+            // Translates CSS into CommonJS
+            {
+                loader: "css-loader",
+                options: {
+                    modules: {
+                        // give unique classes after build only for module css files not for all .scss files
+                        auto: (resPath: string) => Boolean(resPath.includes(".module.")),
+                        localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
+                    },
+                }
+            },
+            // Compiles Sass to CSS
+            "sass-loader",
+        ],
+    };
     return [
         typescriptLoader,
         cssLoaders
