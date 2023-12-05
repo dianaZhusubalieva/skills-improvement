@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import { useTheme } from "app/providers/ThemeProvider";
 
 const MainPage = () => {
+    const { toggleTheme } = useTheme();
+
     return (
         <div>
-            main page
+            <button onClick={toggleTheme}>switch</button>
         </div>
     );
 };
