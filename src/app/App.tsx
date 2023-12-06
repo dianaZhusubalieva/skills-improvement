@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./styles/index.scss";
 import { useTheme } from "app/providers/ThemeProvider";
 import { clsx } from "shared/lib/clsx/clsx";
@@ -11,11 +11,14 @@ const App = () => {
 
     return (
         <div className={clsx(`app ${theme}`)}>
-            <Navbar />
-            <div className="content-page">
-                <Sidebar />
-                <AppRouter />
-            </div>
+            {/*// suspense for i18n load*/}
+            <Suspense fallback={""}>
+                <Navbar />
+                <div className="content-page">
+                    <Sidebar />
+                    <AppRouter />
+                </div>
+            </Suspense>
         </div>
     );
 };
