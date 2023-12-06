@@ -4,6 +4,7 @@ import { useTheme } from "app/providers/ThemeProvider";
 import { clsx } from "shared/lib/clsx/clsx";
 import { AppRouter } from "app/providers/router";
 import { Navbar } from "widgets/Navbar";
+import { Sidebar } from "widgets/Sidebar";
 
 const App = () => {
     const { theme } = useTheme();
@@ -11,7 +12,10 @@ const App = () => {
     return (
         <div className={clsx(`app ${theme}`)}>
             <Navbar />
-            <AppRouter />
+            <div className="content-page">
+                <Sidebar />
+                <AppRouter />
+            </div>
         </div>
     );
 };
