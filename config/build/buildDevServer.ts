@@ -6,6 +6,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
         port: options.port,
         open: true,
         // for SPA, allows to proxy requests through a specified index.html page
-        historyApiFallback: true
+        historyApiFallback: true,
+        hot: true
     }
 }
