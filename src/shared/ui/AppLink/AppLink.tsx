@@ -1,7 +1,7 @@
-import { clsx } from "shared/lib/clsx/clsx";
+import {clsx} from "shared/lib/clsx/clsx";
 import cls from "./AppLink.module.scss";
-import { Link, LinkProps } from "react-router-dom";
-import { FC, ReactNode } from "react";
+import {Link, type LinkProps} from "react-router-dom";
+import {type FC, type ReactNode} from "react";
 
 export enum AppLinkTheme {
     PRIMARY = "primary",
@@ -15,10 +15,17 @@ interface AppLinkProps extends LinkProps {
 }
 
 export const AppLink: FC<AppLinkProps> = (props: AppLinkProps) => {
-    const { className, children, theme = AppLinkTheme.PRIMARY, ...otherProps } = props;
+    const {
+        className,
+        children,
+        theme = AppLinkTheme.PRIMARY,
+        ...otherProps
+    } = props;
 
     return (
-        <Link className={clsx(cls.AppLink, {}, [className, cls[theme]])} {...otherProps}>
+        <Link
+            className={clsx(cls.AppLink, {}, [className, cls[theme]])}
+            {...otherProps}>
             {children}
         </Link>
     );
