@@ -26,7 +26,13 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "off",
         "@typescript-eslint/no-unsafe-argument": "off",
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "max-len": [
+            "error",
+            {
+                "ignoreComments": true
+            }
+        ]
     },
     "globals": {
         "_IS_DEV_": true

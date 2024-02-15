@@ -5,7 +5,9 @@ import {useTranslation} from "react-i18next";
 const MainPage = () => {
     const {toggleTheme} = useTheme();
     const {t} = useTranslation();
+    // const myVariable = "diana";
 
+    console.log("window", window);
     return (
         <div>
             <button onClick={toggleTheme}>switch</button>
